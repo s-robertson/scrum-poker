@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <GameBoard
+      v-if="gameInProgress"
+      :current-game="currentGame"
+      :current-player="currentPlayer"
+    />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<script lang="ts">
+import GameBoard from "@/components/GameBoard.vue";
+import { Vue, Component } from "vue-property-decorator";
+import { Getter } from "vuex-class";
+import { Game } from "@/models/Game";
+import { Player } from "@/models/Player";
 
-export default {
-  name: "Home",
-  components: {
-    HelloWorld
+@Component({
+  components: { GameBoard }
+})
+export default class Home extends Vue {
+  @Getter("currentGame") currentGame?: Game;
+  @Getter("me") currentPlayer?: Player;
+
+  get gameInProgress(): boolean {
+    return !!(this.currentGame && this.currentPlayer);
   }
-};
+}
 </script>
