@@ -25,12 +25,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Game } from "@/models/Game";
 import { Getter } from "vuex-class";
 import { GameEstimate } from "@/models/GameEstimate";
-import { AppGetters, AppGettersInterface } from "@/store/getters";
-import { AppState } from "@/store";
 
 @Component
 export default class EstimateList extends Vue {
   @Prop(Game) readonly game!: Game;
-  @Getter("gameEstimates") estimates!: AppGetters["gameEstimates"];
+  @Getter("gameEstimates") estimates!: Array<GameEstimate>;
 }
 </script>

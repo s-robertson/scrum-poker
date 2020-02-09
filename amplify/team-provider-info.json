@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-scrum-poker-dev-130639-authRole",
+            "UnauthRoleArn": "arn:aws:iam::363700981672:role/amplify-scrum-poker-dev-130639-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::363700981672:role/amplify-scrum-poker-dev-130639-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-scrum-poker-dev-130639-deployment",
+            "UnauthRoleName": "amplify-scrum-poker-dev-130639-unauthRole",
+            "StackName": "amplify-scrum-poker-dev-130639",
+            "StackId": "arn:aws:cloudformation:us-west-2:363700981672:stack/amplify-scrum-poker-dev-130639/12fd03d0-4b80-11ea-8fbc-065424fac776",
+            "AmplifyAppId": "d989txbe39i27"
+        }
+    }
+}

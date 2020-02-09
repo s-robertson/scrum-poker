@@ -1,0 +1,18 @@
+type Player @model {
+  id: ID!
+  name: String!
+  game: Game! @connection(name: "GamePlayers")
+  estimate: Estimate @connection(name: "PlayerEstimate")
+}
+
+type Estimate @model {
+  game: Game! @connection(name: "GameEstimates")
+  player: Player! @connection(name: "PlayerEstimate")
+  storyPoints: Int!
+}
+
+type Game @model {
+  id: ID!
+  players: [Player!]! @connection(name: "GamePlayers")
+  estimates: [Estimate!]! @connection(name: "GameEstimates")
+}
