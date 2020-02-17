@@ -8,43 +8,6 @@ export const AppGetters: GetterTree<AppState, AppState> = {
   currentGame(state: AppState): Game | null {
     return state.currentGame || null;
   },
-  me(state: AppState): Player | null {
-    const currentPlayers = state.currentGame?.players || [];
-
-    if (currentPlayers.length === 0) {
-      return null;
-    }
-
-    return (
-      currentPlayers.find((player: Player) => {
-        return player.id === state.currentPlayer;
-      }) || null
-    );
-  },
-  gameProgress(state: AppState): number {
-    if (!state.currentGame) {
-      return 0;
-    }
-
-    const totalPlayers = state.currentGame.players.length;
-
-    if (totalPlayers === 0) {
-      return 0;
-    }
-
-    return (state.currentGame.estimates.length / totalPlayers) * 100;
-  },
-  playerName: state => (playerId: string): string => {
-    if (!state.currentGame) {
-      return "";
-    }
-
-    const player = state.currentGame.players.find(
-      player => player.id === playerId
-    );
-
-    return player?.name || "";
-  },
   gameEstimates(state: AppState, getters): Array<GameEstimate> {
     if (!state.currentGame) {
       return [];
@@ -60,5 +23,42 @@ export const AppGetters: GetterTree<AppState, AppState> = {
         existingEstimate?.storyPoints || 0
       );
     });
+  },
+  gameProgress(state: AppState): number {
+    if (!state.currentGame) {
+      return 0;
+    }
+
+    const totalPlayers = state.currentGame.players.length;
+
+    if (totalPlayers === 0) {
+      return 0;
+    }
+
+    return (state.currentGame.estimates.length / totalPlayers) * 100;
+  },
+  me(state: AppState): Player | null {
+    const currentPlayers = state.currentGame?.players || [];
+
+    if (currentPlayers.length === 0) {
+      return null;
+    }
+
+    return (
+      currentPlayers.find((player: Player) => {
+        return player.id === state.currentPlayer;
+      }) || null
+    );
+  },
+  playerName: state => (playerId: string): string => {
+    if (!state.currentGame) {
+      return "";
+    }
+
+    const player = state.currentGame.players.find(
+      player => player.id === playerId
+    );
+
+    return player?.name || "";
   }
 };

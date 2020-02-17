@@ -12,7 +12,6 @@ export class AppState {
   status: AppStatus = AppStatus.LOADING;
   currentGame: Game | null = null;
   currentPlayer = "";
-  subscriptions: Array<object> = [];
 }
 
 export default new Vuex.Store({

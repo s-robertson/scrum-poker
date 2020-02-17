@@ -6,9 +6,6 @@ import { Player } from "@/models/Player";
 import { AppStatus } from "@/types";
 
 export const AppMutations: MutationTree<AppState> = {
-  addSubscription(state: AppState, subscription: object) {
-    state.subscriptions.push(subscription);
-  },
   addEstimate(state: AppState, newEstimate: Estimate) {
     const currentGame = state.currentGame;
 
@@ -24,17 +21,27 @@ export const AppMutations: MutationTree<AppState> = {
 
     currentGame.estimates = updatedEstimates;
   },
+  addPlayerToGame(state: AppState, player: Player) {
+    state.currentGame?.players?.push(player);
+  },
+  playerJoined(state: AppState, player: Player) {
+    if (state.currentPlayer === player.id) {
+      return;
+    }
+    state.currentGame?.players?.push(player);
+  },
+  playerLeft(state: AppState, playerId: string) {
+    if (state.currentGame) {
+      state.currentGame.players = state.currentGame?.players?.filter(player => {
+        return player.id !== playerId;
+      });
+    }
+  },
   setCurrentGame(state: AppState, game: Game) {
     state.currentGame = game;
   },
   setCurrentPlayer(state: AppState, playerId: string) {
     state.currentPlayer = playerId;
-  },
-  addPlayerToGame(state: AppState, player: Player) {
-    state.currentGame?.players?.push(player);
-  },
-  setStatus(state: AppState, status: AppStatus) {
-    state.status = status;
   },
   setEstimates(state: AppState, estimates: Array<Estimate>) {
     if (!state.currentGame) {
@@ -42,11 +49,7 @@ export const AppMutations: MutationTree<AppState> = {
     }
     state.currentGame.estimates = estimates;
   },
-  removePlayerFromGame(state: AppState, playerId: string) {
-    if (state.currentGame) {
-      state.currentGame.players = state.currentGame?.players?.filter(player => {
-        return player.id !== playerId;
-      });
-    }
+  setStatus(state: AppState, status: AppStatus) {
+    state.status = status;
   }
 };
