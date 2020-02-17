@@ -12,12 +12,12 @@ export class AppState {
   status: AppStatus = AppStatus.LOADING;
   currentGame: Game | null = null;
   currentPlayer = "";
+  subscriptions: Array<object> = [];
 }
 
 export default new Vuex.Store({
   state: new AppState(),
   mutations: AppMutations,
   getters: AppGetters,
-  actions: AppActions,
-  modules: {}
+  actions: AppActions
 });

@@ -10,6 +10,7 @@
         <div class="md-layout-item md-size-50">
           <EstimateList :game="game" />
           <MdButton @click="handleReset">Reset</MdButton>
+          <MdButton @click="handleExit">Exit</MdButton>
         </div>
       </div>
     </div>
@@ -32,6 +33,7 @@ export default class GameBoard extends Vue {
   @Prop(Game) game!: Game;
   @Prop(Player) player!: Player;
   @Action("resetCurrentGame") resetCurrentGame!: ActionMethod;
+  @Action("deletePlayer") deletePlayer!: ActionMethod;
 
   get playerName() {
     return this.player.name;
@@ -49,6 +51,10 @@ export default class GameBoard extends Vue {
 
   handleReset() {
     this.resetCurrentGame();
+  }
+
+  handleExit() {
+    this.deletePlayer(this.player.id);
   }
 }
 </script>

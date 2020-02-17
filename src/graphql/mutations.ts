@@ -12,19 +12,71 @@ export const createPlayer = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
       estimate {
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         player {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         storyPoints
       }
@@ -42,19 +94,71 @@ export const updatePlayer = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
       estimate {
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         player {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         storyPoints
       }
@@ -72,19 +176,71 @@ export const deletePlayer = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
       estimate {
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         player {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         storyPoints
       }
@@ -100,9 +256,29 @@ export const createEstimate = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
@@ -111,8 +287,40 @@ export const createEstimate = /* GraphQL */ `
         name
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         estimate {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
       }
@@ -129,9 +337,29 @@ export const updateEstimate = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
@@ -140,8 +368,40 @@ export const updateEstimate = /* GraphQL */ `
         name
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         estimate {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
       }
@@ -158,9 +418,29 @@ export const deleteEstimate = /* GraphQL */ `
       game {
         id
         players {
+          items {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           nextToken
         }
         estimates {
+          items {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
           nextToken
         }
       }
@@ -169,8 +449,40 @@ export const deleteEstimate = /* GraphQL */ `
         name
         game {
           id
+          players {
+            items {
+              id
+              name
+            }
+            nextToken
+          }
+          estimates {
+            items {
+              storyPoints
+            }
+            nextToken
+          }
         }
         estimate {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
       }
@@ -189,11 +501,49 @@ export const createGame = /* GraphQL */ `
         items {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         nextToken
       }
       estimates {
         items {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
         nextToken
@@ -212,11 +562,49 @@ export const updateGame = /* GraphQL */ `
         items {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         nextToken
       }
       estimates {
         items {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
         nextToken
@@ -235,11 +623,49 @@ export const deleteGame = /* GraphQL */ `
         items {
           id
           name
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          estimate {
+            game {
+              id
+            }
+            player {
+              id
+              name
+            }
+            storyPoints
+          }
         }
         nextToken
       }
       estimates {
         items {
+          game {
+            id
+            players {
+              nextToken
+            }
+            estimates {
+              nextToken
+            }
+          }
+          player {
+            id
+            name
+            game {
+              id
+            }
+            estimate {
+              storyPoints
+            }
+          }
           storyPoints
         }
         nextToken

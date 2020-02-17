@@ -1,30 +1,23 @@
-import {AppStatus} from "@/app";
 <template>
   <div id="app">
     <MdApp>
       <MdAppToolbar class="md-primary">
-        <span class="md-title">My Title</span>
+        <span class="md-title">Scrum Poker</span>
       </MdAppToolbar>
+      <MdAppContent>
+        <RouterView />
+      </MdAppContent>
     </MdApp>
-    <RouterView />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { mapState } from "vuex";
 import { AppStatus } from "@/types";
+import { State } from "vuex-class";
 
-@Component({
-  computed: {
-    ...mapState["status"]
-  }
-})
+@Component
 export default class App extends Vue {
-  status: AppStatus = AppStatus.LOADING;
-
-  get isLoading(): boolean {
-    return this.status === AppStatus.LOADING;
-  }
+  @State("status") status!: AppStatus;
 }
 </script>
