@@ -10,10 +10,6 @@ import { ApiClient } from "@/services/apiClient";
 
 const client: ApiClient = new ApiClient();
 
-type LocalState = {
-  playerId: string;
-};
-
 function subscribeToPlayerUpdates(
   gameId: string,
   commit: Commit
@@ -45,10 +41,7 @@ export const AppActions: ActionTree<AppState, AppState> = {
     { playerName, gameId }: { playerName: string; gameId: string }
   ) {
     const newPlayer: Player = await client.createPlayer(playerName, gameId);
-    const localState: LocalState = { playerId: newPlayer.id };
-    window.localStorage.setItem("gameInfo", JSON.stringify(localState));
-    commit("setCurrentPlayer", newPlayer.id);
-    commit("addPlayerToGame", newPlayer);
+    commit("joinGame", newPlayer);
   },
   async loadGame({ commit }, id: string): Promise<Game | null> {
     commit("setStatus", AppStatus.LOADING);
@@ -59,23 +52,6 @@ export const AppActions: ActionTree<AppState, AppState> = {
     }
     subscribeToPlayerUpdates(game.id, commit);
     commit("setCurrentGame", game);
-
-    const localGameInfo: string | null = window.localStorage.getItem(
-      "gameInfo"
-    );
-
-    if (localGameInfo) {
-      const gameInfo: LocalState = JSON.parse(localGameInfo);
-
-      const playerIndex: number = game.players.findIndex(player => {
-        return player.id === gameInfo.playerId;
-      });
-
-      if (playerIndex !== -1) {
-        commit("setCurrentPlayer", game.players[playerIndex].id);
-      }
-    }
-
     return game;
   },
   async newGame({ commit }): Promise<string> {

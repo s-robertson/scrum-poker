@@ -21,7 +21,7 @@ export const AppMutations: MutationTree<AppState> = {
 
     currentGame.estimates = updatedEstimates;
   },
-  addPlayerToGame(state: AppState, player: Player) {
+  joinGame(state: AppState, player: Player) {
     state.currentGame?.players?.push(player);
   },
   playerJoined(state: AppState, player: Player) {

@@ -5,6 +5,7 @@ import { AppMutations } from "@/store/mutations";
 import { AppStatus } from "@/types";
 import { AppGetters } from "@/store/getters";
 import { AppActions } from "@/store/actions";
+import { gameInfoStoragePlugin } from "@/store/plugins/localStorage";
 
 Vue.use(Vuex);
 
@@ -18,5 +19,6 @@ export default new Vuex.Store({
   state: new AppState(),
   mutations: AppMutations,
   getters: AppGetters,
-  actions: AppActions
+  actions: AppActions,
+  plugins: [gameInfoStoragePlugin]
 });
